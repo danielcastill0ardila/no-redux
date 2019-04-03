@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Store } from './Store';
+import { Store } from '../store/Store';
 import PlayerCard from './PlayerCard';
 
 const Players = () => {
@@ -15,7 +15,7 @@ const Players = () => {
             <div
               key={index}
               className="col-md-3"
-              style={{ marginBottom: '14px' }}
+              style={{ marginBottom: '14px', height: '400px' }}
             >
               <PlayerCard {...player} />
             </div>

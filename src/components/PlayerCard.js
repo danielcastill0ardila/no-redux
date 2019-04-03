@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { Store } from './Store';
-import { addPlayerToFav } from './Actions';
+import { Store } from '../store/Store';
+import { addPlayerToFav } from '../store/Actions';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
@@ -88,7 +88,7 @@ const RecipeReviewCard = props => {
           <FavoriteIcon
             color={
               state.favplayers.find(pl => pl.id === player.id)
-                ? 'secondary'
+                ? 'primary'
                 : 'default'
             }
           />

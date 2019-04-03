@@ -1,17 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
-import { Store } from './Store';
+
 import Players from './Players';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import PhoneIcon from '@material-ui/icons/People';
-
+import People from '@material-ui/icons/People';
+import Heart from '@material-ui/icons/Favorite';
 function TabContainer(props) {
   return (
     <Card>
@@ -24,22 +22,14 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper
-  }
-});
-
 const NavBar = () => {
   const [value, setValue] = useState(0);
-
   const handleChange = (_, value) => {
     setValue(value);
   };
   return (
     <>
-      <div style={{ padding: '138px 360px' }}>
+      <div style={{ padding: '84px 360px' }}>
         <AppBar position="static" color="default">
           <Tabs
             value={value}
@@ -47,10 +37,10 @@ const NavBar = () => {
             variant="scrollable"
             scrollButtons="on"
             indicatorColor="primary"
-            textColor="secondary"
+            textColor="primary"
           >
-            <Tab label="Players" icon={<PhoneIcon />} />
-            <Tab label="Fav Players" />
+            <Tab label="Players" icon={<People />} />
+            <Tab label="Fav Players" icon={<Heart />} />
           </Tabs>
         </AppBar>
         {value === 0 && (
