@@ -1,26 +1,45 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useEffect, useContext } from 'react';
+import { fetchPlayers } from './Actions';
 import './App.css';
-import axios from 'axios';
-import Consumers from './Consumer';
-
-export const Context = React.createContext();
+import NavBar from './NavBar';
+import { Store } from './Store';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+const styles = {
+  root: {
+    flexGrow: 1
+  },
+  menuButton: {
+    marginLeft: -18,
+    marginRight: 10
+  }
+};
 
 const App = () => {
-	const [ users, setUsers ] = useState([]);
-
-	useEffect(async () => {
-		let { data } = await axios.get('https://jsonplaceholder.typicode.com/users');
-		setUsers(data);
-	}, []);
-
-	return (
-		<div>
-			<Context.Provider value={users}>
-				<Consumers />
-			</Context.Provider>
-		</div>
-	);
+  const { state, dispatch } = useContext(Store);
+  useEffect(() => {
+    state.players.length === 0 && fetchPlayers(dispatch);
+  }, [state]);
+  console.log(state);
+  return (
+    <>
+      <AppBar position="static">
+        <Toolbar variant="dense">
+          <IconButton color="inherit" aria-label="Menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" color="inherit">
+            Soccer players
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <NavBar />
+    </>
+  );
 };
 
 export default App;
