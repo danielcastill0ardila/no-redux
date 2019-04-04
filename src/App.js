@@ -26,7 +26,6 @@ const App = () => {
           <Typography variant="h6" color="inherit">
             CondorSongs
           </Typography>
-          
         </Toolbar>
       </AppBar>
       <NavBar />

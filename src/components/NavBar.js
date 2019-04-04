@@ -1,31 +1,30 @@
 import React, { useState, useContext } from 'react';
-import {Store} from '../store/Store';
-import {searchSong} from '../store/Actions';
+import { Store } from '../store/Store';
+import { searchSong } from '../store/Actions';
 import PropTypes from 'prop-types';
-
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
 import Players from './Players';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions'
+import CardActions from '@material-ui/core/CardActions';
 import Music from '@material-ui/icons/LibraryMusic';
 import Heart from '@material-ui/icons/Favorite';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Search';
-
 import Popover from '@material-ui/core/Popover';
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state/index';
-import Typography from '@material-ui/core/Typography';
+import PopupState, {
+  bindTrigger,
+  bindPopover
+} from 'material-ui-popup-state/index';
 import TextField from '@material-ui/core/TextField';
+
 function TabContainer(props) {
-  const {dispatch} = useContext(Store);
-  const handleChange = (event)=>{
-   
-    searchSong(event.target.value,dispatch)
-  }
+  const { dispatch } = useContext(Store);
+  const handleChange = event => {
+    if (event.target.value.length > 6) searchSong(event.target.value, dispatch);
+  };
   return (
     <Card>
       <CardContent>{props.children}</CardContent>
@@ -33,33 +32,37 @@ function TabContainer(props) {
         <PopupState variant="popover" popupId="demo-popup-popover">
           {popupState => (
             <div>
-          
-              <Fab color="secondary" size="small" aria-label="Add" {...bindTrigger(popupState)}>
+              <Fab
+                color="secondary"
+                size="small"
+                aria-label="Add"
+                {...bindTrigger(popupState)}
+              >
                 <AddIcon />
               </Fab>
               <Popover
                 {...bindPopover(popupState)}
                 anchorOrigin={{
                   vertical: 'bottom',
-                  horizontal: 'center',
+                  horizontal: 'center'
                 }}
                 transformOrigin={{
                   vertical: 'top',
-                  horizontal: 'center',
+                  horizontal: 'center'
                 }}
               >
-                <div style={{padding:'20px'}} ><TextField
-                  id="standard-name"
-                  label="Search video"
-             
-                 
-                  onChange={handleChange}
-                  margin="normal"
-                /></div>
+                <div style={{ padding: '20px' }}>
+                  <TextField
+                    id="standard-name"
+                    label="Search video"
+                    onChange={handleChange}
+                    margin="normal"
+                  />
+                </div>
               </Popover>
             </div>
           )}
-    </PopupState>
+        </PopupState>
       </CardActions>
     </Card>
   );
@@ -97,13 +100,8 @@ const NavBar = () => {
         )}
         {value === 1 && <TabContainer>Item Two</TabContainer>}
       </div>
-
     </>
   );
-};
-
-NavBar.propTypes = {
-  classes: PropTypes.object.isRequired
 };
 
 export default NavBar;
