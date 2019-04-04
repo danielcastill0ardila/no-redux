@@ -4,23 +4,24 @@ import PlayerCard from './PlayerCard';
 
 const Players = () => {
   const {
-    state: { players }
+    state: { videos }
   } = useContext(Store);
 
   return (
     <>
       <div style={{ padding: '30px' }}>
         <div className="row">
-          {players.map((player, index) => (
+          {videos.map((player, index) => (
             <div
               key={index}
-              className="col-md-3"
-              style={{ marginBottom: '14px', height: '400px' }}
+              className="col-md-4"
+              style={{ marginBottom: '14px' }}
             >
               <PlayerCard {...player} />
             </div>
           ))}
         </div>
+        
       </div>
     </>
   );

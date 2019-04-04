@@ -13,7 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 const App = () => {
   const { state, dispatch } = useContext(Store);
   useEffect(() => {
-    state.players.length === 0 && fetchPlayers(dispatch);
+    state.videos.length === 0 && fetchPlayers(dispatch);
   }, [state]);
 
   return (
@@ -24,8 +24,9 @@ const App = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit">
-            Soccer players
+            CondorSongs
           </Typography>
+          
         </Toolbar>
       </AppBar>
       <NavBar />
